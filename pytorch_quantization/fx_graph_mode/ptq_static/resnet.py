@@ -148,6 +148,98 @@ data_loader, data_loader_test = prepare_data_loaders(data_path)
 example_inputs = (next(iter(data_loader))[0])
 criterion = nn.CrossEntropyLoss()
 float_model = load_model(saved_model_dir + float_model_file).to("cpu")
+
+print('------------------------------------> float_model')
+print(float_model)
+print('<------------------------------------ float_model')
+
+"""
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=512, out_features=1000, bias=True)
+)
+"""
+
 float_model.eval()
 
 
@@ -189,82 +281,291 @@ qconfig_mapping = QConfigMapping().set_global(qconfig)
 # prepare_fx folds BatchNorm modules into previous Conv2d modules, 
 # and insert observers in appropriate places in the model.
 prepared_model = prepare_fx(model_to_quantize, qconfig_mapping, example_inputs)
+
+"""
 # tracer.trace(model_to_quantize) -> Graph
-# graph():
-#     %x : torch.Tensor [#users=1] = placeholder[target=x]
-#     %conv1 : [#users=1] = call_module[target=conv1](args = (%x,), kwargs = {})
-#     %bn1 : [#users=1] = call_module[target=bn1](args = (%conv1,), kwargs = {})
-#     %relu : [#users=1] = call_module[target=relu](args = (%bn1,), kwargs = {})
-#     %maxpool : [#users=2] = call_module[target=maxpool](args = (%relu,), kwargs = {})
-#     %layer1_0_conv1 : [#users=1] = call_module[target=layer1.0.conv1](args = (%maxpool,), kwargs = {})
-#     %layer1_0_bn1 : [#users=1] = call_module[target=layer1.0.bn1](args = (%layer1_0_conv1,), kwargs = {})
-#     %layer1_0_relu : [#users=1] = call_module[target=layer1.0.relu](args = (%layer1_0_bn1,), kwargs = {})
-#     %layer1_0_conv2 : [#users=1] = call_module[target=layer1.0.conv2](args = (%layer1_0_relu,), kwargs = {})
-#     %layer1_0_bn2 : [#users=1] = call_module[target=layer1.0.bn2](args = (%layer1_0_conv2,), kwargs = {})
-#     %add : [#users=1] = call_function[target=operator.add](args = (%layer1_0_bn2, %maxpool), kwargs = {})
-#     %layer1_0_relu_1 : [#users=2] = call_module[target=layer1.0.relu](args = (%add,), kwargs = {})
-#     %layer1_1_conv1 : [#users=1] = call_module[target=layer1.1.conv1](args = (%layer1_0_relu_1,), kwargs = {})
-#     %layer1_1_bn1 : [#users=1] = call_module[target=layer1.1.bn1](args = (%layer1_1_conv1,), kwargs = {})
-#     %layer1_1_relu : [#users=1] = call_module[target=layer1.1.relu](args = (%layer1_1_bn1,), kwargs = {})
-#     %layer1_1_conv2 : [#users=1] = call_module[target=layer1.1.conv2](args = (%layer1_1_relu,), kwargs = {})
-#     %layer1_1_bn2 : [#users=1] = call_module[target=layer1.1.bn2](args = (%layer1_1_conv2,), kwargs = {})
-#     %add_1 : [#users=1] = call_function[target=operator.add](args = (%layer1_1_bn2, %layer1_0_relu_1), kwargs = {})
-#     %layer1_1_relu_1 : [#users=2] = call_module[target=layer1.1.relu](args = (%add_1,), kwargs = {})
-#     %layer2_0_conv1 : [#users=1] = call_module[target=layer2.0.conv1](args = (%layer1_1_relu_1,), kwargs = {})
-#     %layer2_0_bn1 : [#users=1] = call_module[target=layer2.0.bn1](args = (%layer2_0_conv1,), kwargs = {})
-#     %layer2_0_relu : [#users=1] = call_module[target=layer2.0.relu](args = (%layer2_0_bn1,), kwargs = {})
-#     %layer2_0_conv2 : [#users=1] = call_module[target=layer2.0.conv2](args = (%layer2_0_relu,), kwargs = {})
-#     %layer2_0_bn2 : [#users=1] = call_module[target=layer2.0.bn2](args = (%layer2_0_conv2,), kwargs = {})
-#     %layer2_0_downsample_0 : [#users=1] = call_module[target=layer2.0.downsample.0](args = (%layer1_1_relu_1,), kwargs = {})
-#     %layer2_0_downsample_1 : [#users=1] = call_module[target=layer2.0.downsample.1](args = (%layer2_0_downsample_0,), kwargs = {})
-#     %add_2 : [#users=1] = call_function[target=operator.add](args = (%layer2_0_bn2, %layer2_0_downsample_1), kwargs = {})
-#     %layer2_0_relu_1 : [#users=2] = call_module[target=layer2.0.relu](args = (%add_2,), kwargs = {})
-#     %layer2_1_conv1 : [#users=1] = call_module[target=layer2.1.conv1](args = (%layer2_0_relu_1,), kwargs = {})
-#     %layer2_1_bn1 : [#users=1] = call_module[target=layer2.1.bn1](args = (%layer2_1_conv1,), kwargs = {})
-#     %layer2_1_relu : [#users=1] = call_module[target=layer2.1.relu](args = (%layer2_1_bn1,), kwargs = {})
-#     %layer2_1_conv2 : [#users=1] = call_module[target=layer2.1.conv2](args = (%layer2_1_relu,), kwargs = {})
-#     %layer2_1_bn2 : [#users=1] = call_module[target=layer2.1.bn2](args = (%layer2_1_conv2,), kwargs = {})
-#     %add_3 : [#users=1] = call_function[target=operator.add](args = (%layer2_1_bn2, %layer2_0_relu_1), kwargs = {})
-#     %layer2_1_relu_1 : [#users=2] = call_module[target=layer2.1.relu](args = (%add_3,), kwargs = {})
-#     %layer3_0_conv1 : [#users=1] = call_module[target=layer3.0.conv1](args = (%layer2_1_relu_1,), kwargs = {})
-#     %layer3_0_bn1 : [#users=1] = call_module[target=layer3.0.bn1](args = (%layer3_0_conv1,), kwargs = {})
-#     %layer3_0_relu : [#users=1] = call_module[target=layer3.0.relu](args = (%layer3_0_bn1,), kwargs = {})
-#     %layer3_0_conv2 : [#users=1] = call_module[target=layer3.0.conv2](args = (%layer3_0_relu,), kwargs = {})
-#     %layer3_0_bn2 : [#users=1] = call_module[target=layer3.0.bn2](args = (%layer3_0_conv2,), kwargs = {})
-#     %layer3_0_downsample_0 : [#users=1] = call_module[target=layer3.0.downsample.0](args = (%layer2_1_relu_1,), kwargs = {})
-#     %layer3_0_downsample_1 : [#users=1] = call_module[target=layer3.0.downsample.1](args = (%layer3_0_downsample_0,), kwargs = {})
-#     %add_4 : [#users=1] = call_function[target=operator.add](args = (%layer3_0_bn2, %layer3_0_downsample_1), kwargs = {})
-#     %layer3_0_relu_1 : [#users=2] = call_module[target=layer3.0.relu](args = (%add_4,), kwargs = {})
-#     %layer3_1_conv1 : [#users=1] = call_module[target=layer3.1.conv1](args = (%layer3_0_relu_1,), kwargs = {})
-#     %layer3_1_bn1 : [#users=1] = call_module[target=layer3.1.bn1](args = (%layer3_1_conv1,), kwargs = {})
-#     %layer3_1_relu : [#users=1] = call_module[target=layer3.1.relu](args = (%layer3_1_bn1,), kwargs = {})
-#     %layer3_1_conv2 : [#users=1] = call_module[target=layer3.1.conv2](args = (%layer3_1_relu,), kwargs = {})
-#     %layer3_1_bn2 : [#users=1] = call_module[target=layer3.1.bn2](args = (%layer3_1_conv2,), kwargs = {})
-#     %add_5 : [#users=1] = call_function[target=operator.add](args = (%layer3_1_bn2, %layer3_0_relu_1), kwargs = {})
-#     %layer3_1_relu_1 : [#users=2] = call_module[target=layer3.1.relu](args = (%add_5,), kwargs = {})
-#     %layer4_0_conv1 : [#users=1] = call_module[target=layer4.0.conv1](args = (%layer3_1_relu_1,), kwargs = {})
-#     %layer4_0_bn1 : [#users=1] = call_module[target=layer4.0.bn1](args = (%layer4_0_conv1,), kwargs = {})
-#     %layer4_0_relu : [#users=1] = call_module[target=layer4.0.relu](args = (%layer4_0_bn1,), kwargs = {})
-#     %layer4_0_conv2 : [#users=1] = call_module[target=layer4.0.conv2](args = (%layer4_0_relu,), kwargs = {})
-#     %layer4_0_bn2 : [#users=1] = call_module[target=layer4.0.bn2](args = (%layer4_0_conv2,), kwargs = {})
-#     %layer4_0_downsample_0 : [#users=1] = call_module[target=layer4.0.downsample.0](args = (%layer3_1_relu_1,), kwargs = {})
-#     %layer4_0_downsample_1 : [#users=1] = call_module[target=layer4.0.downsample.1](args = (%layer4_0_downsample_0,), kwargs = {})
-#     %add_6 : [#users=1] = call_function[target=operator.add](args = (%layer4_0_bn2, %layer4_0_downsample_1), kwargs = {})
-#     %layer4_0_relu_1 : [#users=2] = call_module[target=layer4.0.relu](args = (%add_6,), kwargs = {})
-#     %layer4_1_conv1 : [#users=1] = call_module[target=layer4.1.conv1](args = (%layer4_0_relu_1,), kwargs = {})
-#     %layer4_1_bn1 : [#users=1] = call_module[target=layer4.1.bn1](args = (%layer4_1_conv1,), kwargs = {})
-#     %layer4_1_relu : [#users=1] = call_module[target=layer4.1.relu](args = (%layer4_1_bn1,), kwargs = {})
-#     %layer4_1_conv2 : [#users=1] = call_module[target=layer4.1.conv2](args = (%layer4_1_relu,), kwargs = {})
-#     %layer4_1_bn2 : [#users=1] = call_module[target=layer4.1.bn2](args = (%layer4_1_conv2,), kwargs = {})
-#     %add_7 : [#users=1] = call_function[target=operator.add](args = (%layer4_1_bn2, %layer4_0_relu_1), kwargs = {})
-#     %layer4_1_relu_1 : [#users=1] = call_module[target=layer4.1.relu](args = (%add_7,), kwargs = {})
-#     %avgpool : [#users=1] = call_module[target=avgpool](args = (%layer4_1_relu_1,), kwargs = {})
-#     %flatten : [#users=1] = call_function[target=torch.flatten](args = (%avgpool, 1), kwargs = {})
-#     %fc : [#users=1] = call_module[target=fc](args = (%flatten,), kwargs = {})
-#     return fc
+graph():
+    %x : torch.Tensor [#users=1] = placeholder[target=x]
+    %conv1 : [#users=1] = call_module[target=conv1](args = (%x,), kwargs = {})
+    %bn1 : [#users=1] = call_module[target=bn1](args = (%conv1,), kwargs = {})
+    %relu : [#users=1] = call_module[target=relu](args = (%bn1,), kwargs = {})
+    %maxpool : [#users=2] = call_module[target=maxpool](args = (%relu,), kwargs = {})
+    %layer1_0_conv1 : [#users=1] = call_module[target=layer1.0.conv1](args = (%maxpool,), kwargs = {})
+    %layer1_0_bn1 : [#users=1] = call_module[target=layer1.0.bn1](args = (%layer1_0_conv1,), kwargs = {})
+    %layer1_0_relu : [#users=1] = call_module[target=layer1.0.relu](args = (%layer1_0_bn1,), kwargs = {})
+    %layer1_0_conv2 : [#users=1] = call_module[target=layer1.0.conv2](args = (%layer1_0_relu,), kwargs = {})
+    %layer1_0_bn2 : [#users=1] = call_module[target=layer1.0.bn2](args = (%layer1_0_conv2,), kwargs = {})
+    %add : [#users=1] = call_function[target=operator.add](args = (%layer1_0_bn2, %maxpool), kwargs = {})
+    %layer1_0_relu_1 : [#users=2] = call_module[target=layer1.0.relu](args = (%add,), kwargs = {})
+    %layer1_1_conv1 : [#users=1] = call_module[target=layer1.1.conv1](args = (%layer1_0_relu_1,), kwargs = {})
+    %layer1_1_bn1 : [#users=1] = call_module[target=layer1.1.bn1](args = (%layer1_1_conv1,), kwargs = {})
+    %layer1_1_relu : [#users=1] = call_module[target=layer1.1.relu](args = (%layer1_1_bn1,), kwargs = {})
+    %layer1_1_conv2 : [#users=1] = call_module[target=layer1.1.conv2](args = (%layer1_1_relu,), kwargs = {})
+    %layer1_1_bn2 : [#users=1] = call_module[target=layer1.1.bn2](args = (%layer1_1_conv2,), kwargs = {})
+    %add_1 : [#users=1] = call_function[target=operator.add](args = (%layer1_1_bn2, %layer1_0_relu_1), kwargs = {})
+    %layer1_1_relu_1 : [#users=2] = call_module[target=layer1.1.relu](args = (%add_1,), kwargs = {})
+    %layer2_0_conv1 : [#users=1] = call_module[target=layer2.0.conv1](args = (%layer1_1_relu_1,), kwargs = {})
+    %layer2_0_bn1 : [#users=1] = call_module[target=layer2.0.bn1](args = (%layer2_0_conv1,), kwargs = {})
+    %layer2_0_relu : [#users=1] = call_module[target=layer2.0.relu](args = (%layer2_0_bn1,), kwargs = {})
+    %layer2_0_conv2 : [#users=1] = call_module[target=layer2.0.conv2](args = (%layer2_0_relu,), kwargs = {})
+    %layer2_0_bn2 : [#users=1] = call_module[target=layer2.0.bn2](args = (%layer2_0_conv2,), kwargs = {})
+    %layer2_0_downsample_0 : [#users=1] = call_module[target=layer2.0.downsample.0](args = (%layer1_1_relu_1,), kwargs = {})
+    %layer2_0_downsample_1 : [#users=1] = call_module[target=layer2.0.downsample.1](args = (%layer2_0_downsample_0,), kwargs = {})
+    %add_2 : [#users=1] = call_function[target=operator.add](args = (%layer2_0_bn2, %layer2_0_downsample_1), kwargs = {})
+    %layer2_0_relu_1 : [#users=2] = call_module[target=layer2.0.relu](args = (%add_2,), kwargs = {})
+    %layer2_1_conv1 : [#users=1] = call_module[target=layer2.1.conv1](args = (%layer2_0_relu_1,), kwargs = {})
+    %layer2_1_bn1 : [#users=1] = call_module[target=layer2.1.bn1](args = (%layer2_1_conv1,), kwargs = {})
+    %layer2_1_relu : [#users=1] = call_module[target=layer2.1.relu](args = (%layer2_1_bn1,), kwargs = {})
+    %layer2_1_conv2 : [#users=1] = call_module[target=layer2.1.conv2](args = (%layer2_1_relu,), kwargs = {})
+    %layer2_1_bn2 : [#users=1] = call_module[target=layer2.1.bn2](args = (%layer2_1_conv2,), kwargs = {})
+    %add_3 : [#users=1] = call_function[target=operator.add](args = (%layer2_1_bn2, %layer2_0_relu_1), kwargs = {})
+    %layer2_1_relu_1 : [#users=2] = call_module[target=layer2.1.relu](args = (%add_3,), kwargs = {})
+    %layer3_0_conv1 : [#users=1] = call_module[target=layer3.0.conv1](args = (%layer2_1_relu_1,), kwargs = {})
+    %layer3_0_bn1 : [#users=1] = call_module[target=layer3.0.bn1](args = (%layer3_0_conv1,), kwargs = {})
+    %layer3_0_relu : [#users=1] = call_module[target=layer3.0.relu](args = (%layer3_0_bn1,), kwargs = {})
+    %layer3_0_conv2 : [#users=1] = call_module[target=layer3.0.conv2](args = (%layer3_0_relu,), kwargs = {})
+    %layer3_0_bn2 : [#users=1] = call_module[target=layer3.0.bn2](args = (%layer3_0_conv2,), kwargs = {})
+    %layer3_0_downsample_0 : [#users=1] = call_module[target=layer3.0.downsample.0](args = (%layer2_1_relu_1,), kwargs = {})
+    %layer3_0_downsample_1 : [#users=1] = call_module[target=layer3.0.downsample.1](args = (%layer3_0_downsample_0,), kwargs = {})
+    %add_4 : [#users=1] = call_function[target=operator.add](args = (%layer3_0_bn2, %layer3_0_downsample_1), kwargs = {})
+    %layer3_0_relu_1 : [#users=2] = call_module[target=layer3.0.relu](args = (%add_4,), kwargs = {})
+    %layer3_1_conv1 : [#users=1] = call_module[target=layer3.1.conv1](args = (%layer3_0_relu_1,), kwargs = {})
+    %layer3_1_bn1 : [#users=1] = call_module[target=layer3.1.bn1](args = (%layer3_1_conv1,), kwargs = {})
+    %layer3_1_relu : [#users=1] = call_module[target=layer3.1.relu](args = (%layer3_1_bn1,), kwargs = {})
+    %layer3_1_conv2 : [#users=1] = call_module[target=layer3.1.conv2](args = (%layer3_1_relu,), kwargs = {})
+    %layer3_1_bn2 : [#users=1] = call_module[target=layer3.1.bn2](args = (%layer3_1_conv2,), kwargs = {})
+    %add_5 : [#users=1] = call_function[target=operator.add](args = (%layer3_1_bn2, %layer3_0_relu_1), kwargs = {})
+    %layer3_1_relu_1 : [#users=2] = call_module[target=layer3.1.relu](args = (%add_5,), kwargs = {})
+    %layer4_0_conv1 : [#users=1] = call_module[target=layer4.0.conv1](args = (%layer3_1_relu_1,), kwargs = {})
+    %layer4_0_bn1 : [#users=1] = call_module[target=layer4.0.bn1](args = (%layer4_0_conv1,), kwargs = {})
+    %layer4_0_relu : [#users=1] = call_module[target=layer4.0.relu](args = (%layer4_0_bn1,), kwargs = {})
+    %layer4_0_conv2 : [#users=1] = call_module[target=layer4.0.conv2](args = (%layer4_0_relu,), kwargs = {})
+    %layer4_0_bn2 : [#users=1] = call_module[target=layer4.0.bn2](args = (%layer4_0_conv2,), kwargs = {})
+    %layer4_0_downsample_0 : [#users=1] = call_module[target=layer4.0.downsample.0](args = (%layer3_1_relu_1,), kwargs = {})
+    %layer4_0_downsample_1 : [#users=1] = call_module[target=layer4.0.downsample.1](args = (%layer4_0_downsample_0,), kwargs = {})
+    %add_6 : [#users=1] = call_function[target=operator.add](args = (%layer4_0_bn2, %layer4_0_downsample_1), kwargs = {})
+    %layer4_0_relu_1 : [#users=2] = call_module[target=layer4.0.relu](args = (%add_6,), kwargs = {})
+    %layer4_1_conv1 : [#users=1] = call_module[target=layer4.1.conv1](args = (%layer4_0_relu_1,), kwargs = {})
+    %layer4_1_bn1 : [#users=1] = call_module[target=layer4.1.bn1](args = (%layer4_1_conv1,), kwargs = {})
+    %layer4_1_relu : [#users=1] = call_module[target=layer4.1.relu](args = (%layer4_1_bn1,), kwargs = {})
+    %layer4_1_conv2 : [#users=1] = call_module[target=layer4.1.conv2](args = (%layer4_1_relu,), kwargs = {})
+    %layer4_1_bn2 : [#users=1] = call_module[target=layer4.1.bn2](args = (%layer4_1_conv2,), kwargs = {})
+    %add_7 : [#users=1] = call_function[target=operator.add](args = (%layer4_1_bn2, %layer4_0_relu_1), kwargs = {})
+    %layer4_1_relu_1 : [#users=1] = call_module[target=layer4.1.relu](args = (%add_7,), kwargs = {})
+    %avgpool : [#users=1] = call_module[target=avgpool](args = (%layer4_1_relu_1,), kwargs = {})
+    %flatten : [#users=1] = call_function[target=torch.flatten](args = (%avgpool, 1), kwargs = {})
+    %fc : [#users=1] = call_module[target=fc](args = (%flatten,), kwargs = {})
+    return fc
+"""
 
+print('------------------------------------> prepared_model')
+print(prepared_model)
+print('<------------------------------------ prepared_model')
 
-print(prepared_model.graph)
+"""
+GraphModule(
+  (activation_post_process_0): HistogramObserver(min_val=inf, max_val=-inf)
+  (conv1): ConvReLU2d(
+    (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3))
+    (1): ReLU(inplace=True)
+  )
+  (activation_post_process_1): HistogramObserver(min_val=inf, max_val=-inf)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (activation_post_process_2): HistogramObserver(min_val=inf, max_val=-inf)
+  (layer1): Module(
+    (0): Module(
+      (conv1): ConvReLU2d(
+        (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): ReLU(inplace=True)
+      )
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu): ReLU(inplace=True)
+    )
+    (1): Module(
+      (conv1): ConvReLU2d(
+        (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): ReLU(inplace=True)
+      )
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (activation_post_process_3): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_4): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_5): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_6): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_7): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_8): HistogramObserver(min_val=inf, max_val=-inf)
+  (layer2): Module(
+    (0): Module(
+      (conv1): ConvReLU2d(
+        (0): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (1): ReLU(inplace=True)
+      )
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (downsample): Module(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2))
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (1): Module(
+      (conv1): ConvReLU2d(
+        (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): ReLU(inplace=True)
+      )
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (activation_post_process_9): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_10): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_11): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_12): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_13): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_14): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_15): HistogramObserver(min_val=inf, max_val=-inf)
+  (layer3): Module(
+    (0): Module(
+      (conv1): ConvReLU2d(
+        (0): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (1): ReLU(inplace=True)
+      )
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (downsample): Module(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2))
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (1): Module(
+      (conv1): ConvReLU2d(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): ReLU(inplace=True)
+      )
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (activation_post_process_16): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_17): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_18): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_19): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_20): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_21): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_22): HistogramObserver(min_val=inf, max_val=-inf)
+  (layer4): Module(
+    (0): Module(
+      (conv1): ConvReLU2d(
+        (0): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (1): ReLU(inplace=True)
+      )
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (downsample): Module(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2))
+      )
+      (relu): ReLU(inplace=True)
+    )
+    (1): Module(
+      (conv1): ConvReLU2d(
+        (0): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): ReLU(inplace=True)
+      )
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (activation_post_process_23): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_24): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_25): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_26): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_27): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_28): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_29): HistogramObserver(min_val=inf, max_val=-inf)
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (activation_post_process_30): HistogramObserver(min_val=inf, max_val=-inf)
+  (activation_post_process_31): HistogramObserver(min_val=inf, max_val=-inf)
+  (fc): Linear(in_features=512, out_features=1000, bias=True)
+  (activation_post_process_32): HistogramObserver(min_val=inf, max_val=-inf)
+)
+"""
+
+"""
+def forward(self, x : torch.Tensor) -> torch.Tensor:
+    activation_post_process_0 = self.activation_post_process_0(x);  x = None
+    conv1 = self.conv1(activation_post_process_0);  activation_post_process_0 = None
+    activation_post_process_1 = self.activation_post_process_1(conv1);  conv1 = None
+    maxpool = self.maxpool(activation_post_process_1);  activation_post_process_1 = None
+    activation_post_process_2 = self.activation_post_process_2(maxpool);  maxpool = None
+    layer1_0_conv1 = getattr(self.layer1, "0").conv1(activation_post_process_2)
+    activation_post_process_3 = self.activation_post_process_3(layer1_0_conv1);  layer1_0_conv1 = None
+    layer1_0_conv2 = getattr(self.layer1, "0").conv2(activation_post_process_3);  activation_post_process_3 = None
+    activation_post_process_4 = self.activation_post_process_4(layer1_0_conv2);  layer1_0_conv2 = None
+    add = activation_post_process_4 + activation_post_process_2;  activation_post_process_4 = activation_post_process_2 = None
+    layer1_0_relu_1 = getattr(self.layer1, "0").relu(add);  add = None
+    activation_post_process_5 = self.activation_post_process_5(layer1_0_relu_1);  layer1_0_relu_1 = None
+    layer1_1_conv1 = getattr(self.layer1, "1").conv1(activation_post_process_5)
+    activation_post_process_6 = self.activation_post_process_6(layer1_1_conv1);  layer1_1_conv1 = None
+    layer1_1_conv2 = getattr(self.layer1, "1").conv2(activation_post_process_6);  activation_post_process_6 = None
+    activation_post_process_7 = self.activation_post_process_7(layer1_1_conv2);  layer1_1_conv2 = None
+    add_1 = activation_post_process_7 + activation_post_process_5;  activation_post_process_7 = activation_post_process_5 = None
+    layer1_1_relu_1 = getattr(self.layer1, "1").relu(add_1);  add_1 = None
+    activation_post_process_8 = self.activation_post_process_8(layer1_1_relu_1);  layer1_1_relu_1 = None
+    layer2_0_conv1 = getattr(self.layer2, "0").conv1(activation_post_process_8)
+    activation_post_process_9 = self.activation_post_process_9(layer2_0_conv1);  layer2_0_conv1 = None
+    layer2_0_conv2 = getattr(self.layer2, "0").conv2(activation_post_process_9);  activation_post_process_9 = None
+    activation_post_process_10 = self.activation_post_process_10(layer2_0_conv2);  layer2_0_conv2 = None
+    layer2_0_downsample_0 = getattr(getattr(self.layer2, "0").downsample, "0")(activation_post_process_8);  activation_post_process_8 = None
+    activation_post_process_11 = self.activation_post_process_11(layer2_0_downsample_0);  layer2_0_downsample_0 = None
+    add_2 = activation_post_process_10 + activation_post_process_11;  activation_post_process_10 = activation_post_process_11 = None
+    layer2_0_relu_1 = getattr(self.layer2, "0").relu(add_2);  add_2 = None
+    activation_post_process_12 = self.activation_post_process_12(layer2_0_relu_1);  layer2_0_relu_1 = None
+    layer2_1_conv1 = getattr(self.layer2, "1").conv1(activation_post_process_12)
+    activation_post_process_13 = self.activation_post_process_13(layer2_1_conv1);  layer2_1_conv1 = None
+    layer2_1_conv2 = getattr(self.layer2, "1").conv2(activation_post_process_13);  activation_post_process_13 = None
+    activation_post_process_14 = self.activation_post_process_14(layer2_1_conv2);  layer2_1_conv2 = None
+    add_3 = activation_post_process_14 + activation_post_process_12;  activation_post_process_14 = activation_post_process_12 = None
+    layer2_1_relu_1 = getattr(self.layer2, "1").relu(add_3);  add_3 = None
+    activation_post_process_15 = self.activation_post_process_15(layer2_1_relu_1);  layer2_1_relu_1 = None
+    layer3_0_conv1 = getattr(self.layer3, "0").conv1(activation_post_process_15)
+    activation_post_process_16 = self.activation_post_process_16(layer3_0_conv1);  layer3_0_conv1 = None
+    layer3_0_conv2 = getattr(self.layer3, "0").conv2(activation_post_process_16);  activation_post_process_16 = None
+    activation_post_process_17 = self.activation_post_process_17(layer3_0_conv2);  layer3_0_conv2 = None
+    layer3_0_downsample_0 = getattr(getattr(self.layer3, "0").downsample, "0")(activation_post_process_15);  activation_post_process_15 = None
+    activation_post_process_18 = self.activation_post_process_18(layer3_0_downsample_0);  layer3_0_downsample_0 = None
+    add_4 = activation_post_process_17 + activation_post_process_18;  activation_post_process_17 = activation_post_process_18 = None
+    layer3_0_relu_1 = getattr(self.layer3, "0").relu(add_4);  add_4 = None
+    activation_post_process_19 = self.activation_post_process_19(layer3_0_relu_1);  layer3_0_relu_1 = None
+    layer3_1_conv1 = getattr(self.layer3, "1").conv1(activation_post_process_19)
+    activation_post_process_20 = self.activation_post_process_20(layer3_1_conv1);  layer3_1_conv1 = None
+    layer3_1_conv2 = getattr(self.layer3, "1").conv2(activation_post_process_20);  activation_post_process_20 = None
+    activation_post_process_21 = self.activation_post_process_21(layer3_1_conv2);  layer3_1_conv2 = None
+    add_5 = activation_post_process_21 + activation_post_process_19;  activation_post_process_21 = activation_post_process_19 = None
+    layer3_1_relu_1 = getattr(self.layer3, "1").relu(add_5);  add_5 = None
+    activation_post_process_22 = self.activation_post_process_22(layer3_1_relu_1);  layer3_1_relu_1 = None
+    layer4_0_conv1 = getattr(self.layer4, "0").conv1(activation_post_process_22)
+    activation_post_process_23 = self.activation_post_process_23(layer4_0_conv1);  layer4_0_conv1 = None
+    layer4_0_conv2 = getattr(self.layer4, "0").conv2(activation_post_process_23);  activation_post_process_23 = None
+    activation_post_process_24 = self.activation_post_process_24(layer4_0_conv2);  layer4_0_conv2 = None
+    layer4_0_downsample_0 = getattr(getattr(self.layer4, "0").downsample, "0")(activation_post_process_22);  activation_post_process_22 = None
+    activation_post_process_25 = self.activation_post_process_25(layer4_0_downsample_0);  layer4_0_downsample_0 = None
+    add_6 = activation_post_process_24 + activation_post_process_25;  activation_post_process_24 = activation_post_process_25 = None
+    layer4_0_relu_1 = getattr(self.layer4, "0").relu(add_6);  add_6 = None
+    activation_post_process_26 = self.activation_post_process_26(layer4_0_relu_1);  layer4_0_relu_1 = None
+    layer4_1_conv1 = getattr(self.layer4, "1").conv1(activation_post_process_26)
+    activation_post_process_27 = self.activation_post_process_27(layer4_1_conv1);  layer4_1_conv1 = None
+    layer4_1_conv2 = getattr(self.layer4, "1").conv2(activation_post_process_27);  activation_post_process_27 = None
+    activation_post_process_28 = self.activation_post_process_28(layer4_1_conv2);  layer4_1_conv2 = None
+    add_7 = activation_post_process_28 + activation_post_process_26;  activation_post_process_28 = activation_post_process_26 = None
+    layer4_1_relu_1 = getattr(self.layer4, "1").relu(add_7);  add_7 = None
+    activation_post_process_29 = self.activation_post_process_29(layer4_1_relu_1);  layer4_1_relu_1 = None
+    avgpool = self.avgpool(activation_post_process_29);  activation_post_process_29 = None
+    activation_post_process_30 = self.activation_post_process_30(avgpool);  avgpool = None
+    flatten = torch.flatten(activation_post_process_30, 1);  activation_post_process_30 = None
+    activation_post_process_31 = self.activation_post_process_31(flatten);  flatten = None
+    fc = self.fc(activation_post_process_31);  activation_post_process_31 = None
+    activation_post_process_32 = self.activation_post_process_32(fc);  fc = None
+    return activation_post_process_32
+# To see more debug info, please use `graph_module.print_readable()`
+"""
 
 # Calibration function is run after the observers are inserted in the model.
 def calibrate(model, data_loader, neval_batches = 30):
@@ -280,8 +581,124 @@ calibrate(prepared_model, data_loader_test)  # run calibration on sample data
 
 # convert_fx takes a calibrated model and produces a quantized model.
 quantized_model = convert_fx(prepared_model)
+print('------------------------------------> quantized_model')
 print(quantized_model)
+print('<------------------------------------ quantized_model')
+"""
+GraphModule(
+  (conv1): QuantizedConvReLU2d(3, 64, kernel_size=(7, 7), stride=(2, 2), scale=0.01845436915755272, zero_point=0, padding=(3, 3))
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Module(
+    (0): Module(
+      (conv1): QuantizedConvReLU2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.013733796775341034, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.042959537357091904, zero_point=74, padding=(1, 1))
+    )
+    (1): Module(
+      (conv1): QuantizedConvReLU2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.013421122916042805, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.05732393637299538, zero_point=77, padding=(1, 1))
+    )
+  )
+  (layer2): Module(
+    (0): Module(
+      (conv1): QuantizedConvReLU2d(64, 128, kernel_size=(3, 3), stride=(2, 2), scale=0.014774913899600506, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.03683330491185188, zero_point=61, padding=(1, 1))
+      (downsample): Module(
+        (0): QuantizedConv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), scale=0.03337067738175392, zero_point=67)
+      )
+    )
+    (1): Module(
+      (conv1): QuantizedConvReLU2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.019751884043216705, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.043842144310474396, zero_point=67, padding=(1, 1))
+    )
+  )
+  (layer3): Module(
+    (0): Module(
+      (conv1): QuantizedConvReLU2d(128, 256, kernel_size=(3, 3), stride=(2, 2), scale=0.017449505627155304, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.05285004526376724, zero_point=46, padding=(1, 1))
+      (downsample): Module(
+        (0): QuantizedConv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), scale=0.015410888008773327, zero_point=79)
+      )
+    )
+    (1): Module(
+      (conv1): QuantizedConvReLU2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.017470434308052063, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.058947257697582245, zero_point=70, padding=(1, 1))
+    )
+  )
+  (layer4): Module(
+    (0): Module(
+      (conv1): QuantizedConvReLU2d(256, 512, kernel_size=(3, 3), stride=(2, 2), scale=0.012110990472137928, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.046830132603645325, zero_point=66, padding=(1, 1))
+      (downsample): Module(
+        (0): QuantizedConv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), scale=0.035997286438941956, zero_point=65)
+      )
+    )
+    (1): Module(
+      (conv1): QuantizedConvReLU2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.021302778273820877, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.25726938247680664, zero_point=43, padding=(1, 1))
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): QuantizedLinear(in_features=512, out_features=1000, scale=0.3169812262058258, zero_point=32, qscheme=torch.per_channel_affine)
+)
+"""
 
+"""
+def forward(self, x : torch.Tensor) -> torch.Tensor:
+    conv1_input_scale_0 = self.conv1_input_scale_0
+    conv1_input_zero_point_0 = self.conv1_input_zero_point_0
+    quantize_per_tensor = torch.quantize_per_tensor(x, conv1_input_scale_0, conv1_input_zero_point_0, torch.quint8);  x = conv1_input_scale_0 = conv1_input_zero_point_0 = None
+    conv1 = self.conv1(quantize_per_tensor);  quantize_per_tensor = None
+    maxpool = self.maxpool(conv1);  conv1 = None
+    layer1_0_conv1 = getattr(self.layer1, "0").conv1(maxpool)
+    layer1_0_conv2 = getattr(self.layer1, "0").conv2(layer1_0_conv1);  layer1_0_conv1 = None
+    layer1_0_relu_scale_0 = self.layer1_0_relu_scale_0
+    layer1_0_relu_zero_point_0 = self.layer1_0_relu_zero_point_0
+    add_relu = torch.ops.quantized.add_relu(layer1_0_conv2, maxpool, layer1_0_relu_scale_0, layer1_0_relu_zero_point_0);  layer1_0_conv2 = maxpool = layer1_0_relu_scale_0 = layer1_0_relu_zero_point_0 = None
+    layer1_1_conv1 = getattr(self.layer1, "1").conv1(add_relu)
+    layer1_1_conv2 = getattr(self.layer1, "1").conv2(layer1_1_conv1);  layer1_1_conv1 = None
+    layer1_1_relu_scale_0 = self.layer1_1_relu_scale_0
+    layer1_1_relu_zero_point_0 = self.layer1_1_relu_zero_point_0
+    add_relu_1 = torch.ops.quantized.add_relu(layer1_1_conv2, add_relu, layer1_1_relu_scale_0, layer1_1_relu_zero_point_0);  layer1_1_conv2 = add_relu = layer1_1_relu_scale_0 = layer1_1_relu_zero_point_0 = None
+    layer2_0_conv1 = getattr(self.layer2, "0").conv1(add_relu_1)
+    layer2_0_conv2 = getattr(self.layer2, "0").conv2(layer2_0_conv1);  layer2_0_conv1 = None
+    layer2_0_downsample_0 = getattr(getattr(self.layer2, "0").downsample, "0")(add_relu_1);  add_relu_1 = None
+    layer2_0_relu_scale_0 = self.layer2_0_relu_scale_0
+    layer2_0_relu_zero_point_0 = self.layer2_0_relu_zero_point_0
+    add_relu_2 = torch.ops.quantized.add_relu(layer2_0_conv2, layer2_0_downsample_0, layer2_0_relu_scale_0, layer2_0_relu_zero_point_0);  layer2_0_conv2 = layer2_0_downsample_0 = layer2_0_relu_scale_0 = layer2_0_relu_zero_point_0 = None
+    layer2_1_conv1 = getattr(self.layer2, "1").conv1(add_relu_2)
+    layer2_1_conv2 = getattr(self.layer2, "1").conv2(layer2_1_conv1);  layer2_1_conv1 = None
+    layer2_1_relu_scale_0 = self.layer2_1_relu_scale_0
+    layer2_1_relu_zero_point_0 = self.layer2_1_relu_zero_point_0
+    add_relu_3 = torch.ops.quantized.add_relu(layer2_1_conv2, add_relu_2, layer2_1_relu_scale_0, layer2_1_relu_zero_point_0);  layer2_1_conv2 = add_relu_2 = layer2_1_relu_scale_0 = layer2_1_relu_zero_point_0 = None
+    layer3_0_conv1 = getattr(self.layer3, "0").conv1(add_relu_3)
+    layer3_0_conv2 = getattr(self.layer3, "0").conv2(layer3_0_conv1);  layer3_0_conv1 = None
+    layer3_0_downsample_0 = getattr(getattr(self.layer3, "0").downsample, "0")(add_relu_3);  add_relu_3 = None
+    layer3_0_relu_scale_0 = self.layer3_0_relu_scale_0
+    layer3_0_relu_zero_point_0 = self.layer3_0_relu_zero_point_0
+    add_relu_4 = torch.ops.quantized.add_relu(layer3_0_conv2, layer3_0_downsample_0, layer3_0_relu_scale_0, layer3_0_relu_zero_point_0);  layer3_0_conv2 = layer3_0_downsample_0 = layer3_0_relu_scale_0 = layer3_0_relu_zero_point_0 = None
+    layer3_1_conv1 = getattr(self.layer3, "1").conv1(add_relu_4)
+    layer3_1_conv2 = getattr(self.layer3, "1").conv2(layer3_1_conv1);  layer3_1_conv1 = None
+    layer3_1_relu_scale_0 = self.layer3_1_relu_scale_0
+    layer3_1_relu_zero_point_0 = self.layer3_1_relu_zero_point_0
+    add_relu_5 = torch.ops.quantized.add_relu(layer3_1_conv2, add_relu_4, layer3_1_relu_scale_0, layer3_1_relu_zero_point_0);  layer3_1_conv2 = add_relu_4 = layer3_1_relu_scale_0 = layer3_1_relu_zero_point_0 = None
+    layer4_0_conv1 = getattr(self.layer4, "0").conv1(add_relu_5)
+    layer4_0_conv2 = getattr(self.layer4, "0").conv2(layer4_0_conv1);  layer4_0_conv1 = None
+    layer4_0_downsample_0 = getattr(getattr(self.layer4, "0").downsample, "0")(add_relu_5);  add_relu_5 = None
+    layer4_0_relu_scale_0 = self.layer4_0_relu_scale_0
+    layer4_0_relu_zero_point_0 = self.layer4_0_relu_zero_point_0
+    add_relu_6 = torch.ops.quantized.add_relu(layer4_0_conv2, layer4_0_downsample_0, layer4_0_relu_scale_0, layer4_0_relu_zero_point_0);  layer4_0_conv2 = layer4_0_downsample_0 = layer4_0_relu_scale_0 = layer4_0_relu_zero_point_0 = None
+    layer4_1_conv1 = getattr(self.layer4, "1").conv1(add_relu_6)
+    layer4_1_conv2 = getattr(self.layer4, "1").conv2(layer4_1_conv1);  layer4_1_conv1 = None
+    layer4_1_relu_scale_0 = self.layer4_1_relu_scale_0
+    layer4_1_relu_zero_point_0 = self.layer4_1_relu_zero_point_0
+    add_relu_7 = torch.ops.quantized.add_relu(layer4_1_conv2, add_relu_6, layer4_1_relu_scale_0, layer4_1_relu_zero_point_0);  layer4_1_conv2 = add_relu_6 = layer4_1_relu_scale_0 = layer4_1_relu_zero_point_0 = None
+    avgpool = self.avgpool(add_relu_7);  add_relu_7 = None
+    flatten = torch.flatten(avgpool, 1);  avgpool = None
+    fc = self.fc(flatten);  flatten = None
+    dequantize_32 = fc.dequantize();  fc = None
+    return dequantize_32
+To see more debug info, please use `graph_module.print_readable()`
+"""
 
 # We can now print the size and accuracy of the quantized model.
 print("Size of model before quantization")
@@ -358,233 +775,234 @@ eager_mode_model_file = "resnet18_eager_mode_quantized.pth"
 torch.jit.save(eager_quantized_model, saved_model_dir + eager_mode_model_file)
 
 ###################################################### output #####################################################
-
-# (base) root@autodl-container-9db611b252-b759e1c0:~/autodl-tmp/workspace/infer_system/pytorch_quantization/fx_graph_mode/ptq_static# python3 resnet.py 
-# /root/miniconda3/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
-#   warnings.warn(
-# /root/miniconda3/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
-#   warnings.warn(msg)
-# /root/miniconda3/lib/python3.8/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-#   return self.fget.__get__(instance, owner)()
-# ..............................[before quantization] Evaluation accuracy on test dataset: 88.53, 97.60
-# /root/miniconda3/lib/python3.8/site-packages/torch/ao/quantization/observer.py:214: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
-#   warnings.warn(
-# graph():
-#     %x : torch.Tensor [#users=1] = placeholder[target=x]
-#     %activation_post_process_0 : [#users=1] = call_module[target=activation_post_process_0](args = (%x,), kwargs = {})
-#     %conv1 : [#users=1] = call_module[target=conv1](args = (%activation_post_process_0,), kwargs = {})
-#     %activation_post_process_1 : [#users=1] = call_module[target=activation_post_process_1](args = (%conv1,), kwargs = {})
-#     %maxpool : [#users=1] = call_module[target=maxpool](args = (%activation_post_process_1,), kwargs = {})
-#     %activation_post_process_2 : [#users=2] = call_module[target=activation_post_process_2](args = (%maxpool,), kwargs = {})
-#     %layer1_0_conv1 : [#users=1] = call_module[target=layer1.0.conv1](args = (%activation_post_process_2,), kwargs = {})
-#     %activation_post_process_3 : [#users=1] = call_module[target=activation_post_process_3](args = (%layer1_0_conv1,), kwargs = {})
-#     %layer1_0_conv2 : [#users=1] = call_module[target=layer1.0.conv2](args = (%activation_post_process_3,), kwargs = {})
-#     %activation_post_process_4 : [#users=1] = call_module[target=activation_post_process_4](args = (%layer1_0_conv2,), kwargs = {})
-#     %add : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_4, %activation_post_process_2), kwargs = {})
-#     %layer1_0_relu_1 : [#users=1] = call_module[target=layer1.0.relu](args = (%add,), kwargs = {})
-#     %activation_post_process_5 : [#users=2] = call_module[target=activation_post_process_5](args = (%layer1_0_relu_1,), kwargs = {})
-#     %layer1_1_conv1 : [#users=1] = call_module[target=layer1.1.conv1](args = (%activation_post_process_5,), kwargs = {})
-#     %activation_post_process_6 : [#users=1] = call_module[target=activation_post_process_6](args = (%layer1_1_conv1,), kwargs = {})
-#     %layer1_1_conv2 : [#users=1] = call_module[target=layer1.1.conv2](args = (%activation_post_process_6,), kwargs = {})
-#     %activation_post_process_7 : [#users=1] = call_module[target=activation_post_process_7](args = (%layer1_1_conv2,), kwargs = {})
-#     %add_1 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_7, %activation_post_process_5), kwargs = {})
-#     %layer1_1_relu_1 : [#users=1] = call_module[target=layer1.1.relu](args = (%add_1,), kwargs = {})
-#     %activation_post_process_8 : [#users=2] = call_module[target=activation_post_process_8](args = (%layer1_1_relu_1,), kwargs = {})
-#     %layer2_0_conv1 : [#users=1] = call_module[target=layer2.0.conv1](args = (%activation_post_process_8,), kwargs = {})
-#     %activation_post_process_9 : [#users=1] = call_module[target=activation_post_process_9](args = (%layer2_0_conv1,), kwargs = {})
-#     %layer2_0_conv2 : [#users=1] = call_module[target=layer2.0.conv2](args = (%activation_post_process_9,), kwargs = {})
-#     %activation_post_process_10 : [#users=1] = call_module[target=activation_post_process_10](args = (%layer2_0_conv2,), kwargs = {})
-#     %layer2_0_downsample_0 : [#users=1] = call_module[target=layer2.0.downsample.0](args = (%activation_post_process_8,), kwargs = {})
-#     %activation_post_process_11 : [#users=1] = call_module[target=activation_post_process_11](args = (%layer2_0_downsample_0,), kwargs = {})
-#     %add_2 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_10, %activation_post_process_11), kwargs = {})
-#     %layer2_0_relu_1 : [#users=1] = call_module[target=layer2.0.relu](args = (%add_2,), kwargs = {})
-#     %activation_post_process_12 : [#users=2] = call_module[target=activation_post_process_12](args = (%layer2_0_relu_1,), kwargs = {})
-#     %layer2_1_conv1 : [#users=1] = call_module[target=layer2.1.conv1](args = (%activation_post_process_12,), kwargs = {})
-#     %activation_post_process_13 : [#users=1] = call_module[target=activation_post_process_13](args = (%layer2_1_conv1,), kwargs = {})
-#     %layer2_1_conv2 : [#users=1] = call_module[target=layer2.1.conv2](args = (%activation_post_process_13,), kwargs = {})
-#     %activation_post_process_14 : [#users=1] = call_module[target=activation_post_process_14](args = (%layer2_1_conv2,), kwargs = {})
-#     %add_3 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_14, %activation_post_process_12), kwargs = {})
-#     %layer2_1_relu_1 : [#users=1] = call_module[target=layer2.1.relu](args = (%add_3,), kwargs = {})
-#     %activation_post_process_15 : [#users=2] = call_module[target=activation_post_process_15](args = (%layer2_1_relu_1,), kwargs = {})
-#     %layer3_0_conv1 : [#users=1] = call_module[target=layer3.0.conv1](args = (%activation_post_process_15,), kwargs = {})
-#     %activation_post_process_16 : [#users=1] = call_module[target=activation_post_process_16](args = (%layer3_0_conv1,), kwargs = {})
-#     %layer3_0_conv2 : [#users=1] = call_module[target=layer3.0.conv2](args = (%activation_post_process_16,), kwargs = {})
-#     %activation_post_process_17 : [#users=1] = call_module[target=activation_post_process_17](args = (%layer3_0_conv2,), kwargs = {})
-#     %layer3_0_downsample_0 : [#users=1] = call_module[target=layer3.0.downsample.0](args = (%activation_post_process_15,), kwargs = {})
-#     %activation_post_process_18 : [#users=1] = call_module[target=activation_post_process_18](args = (%layer3_0_downsample_0,), kwargs = {})
-#     %add_4 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_17, %activation_post_process_18), kwargs = {})
-#     %layer3_0_relu_1 : [#users=1] = call_module[target=layer3.0.relu](args = (%add_4,), kwargs = {})
-#     %activation_post_process_19 : [#users=2] = call_module[target=activation_post_process_19](args = (%layer3_0_relu_1,), kwargs = {})
-#     %layer3_1_conv1 : [#users=1] = call_module[target=layer3.1.conv1](args = (%activation_post_process_19,), kwargs = {})
-#     %activation_post_process_20 : [#users=1] = call_module[target=activation_post_process_20](args = (%layer3_1_conv1,), kwargs = {})
-#     %layer3_1_conv2 : [#users=1] = call_module[target=layer3.1.conv2](args = (%activation_post_process_20,), kwargs = {})
-#     %activation_post_process_21 : [#users=1] = call_module[target=activation_post_process_21](args = (%layer3_1_conv2,), kwargs = {})
-#     %add_5 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_21, %activation_post_process_19), kwargs = {})
-#     %layer3_1_relu_1 : [#users=1] = call_module[target=layer3.1.relu](args = (%add_5,), kwargs = {})
-#     %activation_post_process_22 : [#users=2] = call_module[target=activation_post_process_22](args = (%layer3_1_relu_1,), kwargs = {})
-#     %layer4_0_conv1 : [#users=1] = call_module[target=layer4.0.conv1](args = (%activation_post_process_22,), kwargs = {})
-#     %activation_post_process_23 : [#users=1] = call_module[target=activation_post_process_23](args = (%layer4_0_conv1,), kwargs = {})
-#     %layer4_0_conv2 : [#users=1] = call_module[target=layer4.0.conv2](args = (%activation_post_process_23,), kwargs = {})
-#     %activation_post_process_24 : [#users=1] = call_module[target=activation_post_process_24](args = (%layer4_0_conv2,), kwargs = {})
-#     %layer4_0_downsample_0 : [#users=1] = call_module[target=layer4.0.downsample.0](args = (%activation_post_process_22,), kwargs = {})
-#     %activation_post_process_25 : [#users=1] = call_module[target=activation_post_process_25](args = (%layer4_0_downsample_0,), kwargs = {})
-#     %add_6 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_24, %activation_post_process_25), kwargs = {})
-#     %layer4_0_relu_1 : [#users=1] = call_module[target=layer4.0.relu](args = (%add_6,), kwargs = {})
-#     %activation_post_process_26 : [#users=2] = call_module[target=activation_post_process_26](args = (%layer4_0_relu_1,), kwargs = {})
-#     %layer4_1_conv1 : [#users=1] = call_module[target=layer4.1.conv1](args = (%activation_post_process_26,), kwargs = {})
-#     %activation_post_process_27 : [#users=1] = call_module[target=activation_post_process_27](args = (%layer4_1_conv1,), kwargs = {})
-#     %layer4_1_conv2 : [#users=1] = call_module[target=layer4.1.conv2](args = (%activation_post_process_27,), kwargs = {})
-#     %activation_post_process_28 : [#users=1] = call_module[target=activation_post_process_28](args = (%layer4_1_conv2,), kwargs = {})
-#     %add_7 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_28, %activation_post_process_26), kwargs = {})
-#     %layer4_1_relu_1 : [#users=1] = call_module[target=layer4.1.relu](args = (%add_7,), kwargs = {})
-#     %activation_post_process_29 : [#users=1] = call_module[target=activation_post_process_29](args = (%layer4_1_relu_1,), kwargs = {})
-#     %avgpool : [#users=1] = call_module[target=avgpool](args = (%activation_post_process_29,), kwargs = {})
-#     %activation_post_process_30 : [#users=1] = call_module[target=activation_post_process_30](args = (%avgpool,), kwargs = {})
-#     %flatten : [#users=1] = call_function[target=torch.flatten](args = (%activation_post_process_30, 1), kwargs = {})
-#     %activation_post_process_31 : [#users=1] = call_module[target=activation_post_process_31](args = (%flatten,), kwargs = {})
-#     %fc : [#users=1] = call_module[target=fc](args = (%activation_post_process_31,), kwargs = {})
-#     %activation_post_process_32 : [#users=1] = call_module[target=activation_post_process_32](args = (%fc,), kwargs = {})
-#     return activation_post_process_32
-# GraphModule(
-#   (conv1): QuantizedConvReLU2d(3, 64, kernel_size=(7, 7), stride=(2, 2), scale=0.02770872600376606, zero_point=0, padding=(3, 3))
-#   (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
-#   (layer1): Module(
-#     (0): Module(
-#       (conv1): QuantizedConvReLU2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.013096675276756287, zero_point=0, padding=(1, 1))
-#       (conv2): QuantizedConv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.04380526766180992, zero_point=73, padding=(1, 1))
-#     )
-#     (1): Module(
-#       (conv1): QuantizedConvReLU2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.01650076173245907, zero_point=0, padding=(1, 1))
-#       (conv2): QuantizedConv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.05765068531036377, zero_point=78, padding=(1, 1))
-#     )
-#   )
-#   (layer2): Module(
-#     (0): Module(
-#       (conv1): QuantizedConvReLU2d(64, 128, kernel_size=(3, 3), stride=(2, 2), scale=0.014281945303082466, zero_point=0, padding=(1, 1))
-#       (conv2): QuantizedConv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.03979799151420593, zero_point=59, padding=(1, 1))
-#       (downsample): Module(
-#         (0): QuantizedConv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), scale=0.03292635455727577, zero_point=67)
-#       )
-#     )
-#     (1): Module(
-#       (conv1): QuantizedConvReLU2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.01630367338657379, zero_point=0, padding=(1, 1))
-#       (conv2): QuantizedConv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.04399171099066734, zero_point=67, padding=(1, 1))
-#     )
-#   )
-#   (layer3): Module(
-#     (0): Module(
-#       (conv1): QuantizedConvReLU2d(128, 256, kernel_size=(3, 3), stride=(2, 2), scale=0.022209102287888527, zero_point=0, padding=(1, 1))
-#       (conv2): QuantizedConv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.04951776564121246, zero_point=47, padding=(1, 1))
-#       (downsample): Module(
-#         (0): QuantizedConv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), scale=0.01479915902018547, zero_point=86)
-#       )
-#     )
-#     (1): Module(
-#       (conv1): QuantizedConvReLU2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.015260775573551655, zero_point=0, padding=(1, 1))
-#       (conv2): QuantizedConv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.050822507590055466, zero_point=72, padding=(1, 1))
-#     )
-#   )
-#   (layer4): Module(
-#     (0): Module(
-#       (conv1): QuantizedConvReLU2d(256, 512, kernel_size=(3, 3), stride=(2, 2), scale=0.013010699301958084, zero_point=0, padding=(1, 1))
-#       (conv2): QuantizedConv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.04366626217961311, zero_point=68, padding=(1, 1))
-#       (downsample): Module(
-#         (0): QuantizedConv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), scale=0.037426918745040894, zero_point=65)
-#       )
-#     )
-#     (1): Module(
-#       (conv1): QuantizedConvReLU2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.014271634630858898, zero_point=0, padding=(1, 1))
-#       (conv2): QuantizedConv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.24437215924263, zero_point=44, padding=(1, 1))
-#     )
-#   )
-#   (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
-#   (fc): QuantizedLinear(in_features=512, out_features=1000, scale=0.32927021384239197, zero_point=33, qscheme=torch.per_channel_affine)
-# )
-
-
-
-# def forward(self, x : torch.Tensor) -> torch.Tensor:
-#     conv1_input_scale_0 = self.conv1_input_scale_0
-#     conv1_input_zero_point_0 = self.conv1_input_zero_point_0
-#     quantize_per_tensor = torch.quantize_per_tensor(x, conv1_input_scale_0, conv1_input_zero_point_0, torch.quint8);  x = conv1_input_scale_0 = conv1_input_zero_point_0 = None
-#     conv1 = self.conv1(quantize_per_tensor);  quantize_per_tensor = None
-#     maxpool = self.maxpool(conv1);  conv1 = None
-#     layer1_0_conv1 = getattr(self.layer1, "0").conv1(maxpool)
-#     layer1_0_conv2 = getattr(self.layer1, "0").conv2(layer1_0_conv1);  layer1_0_conv1 = None
-#     layer1_0_relu_scale_0 = self.layer1_0_relu_scale_0
-#     layer1_0_relu_zero_point_0 = self.layer1_0_relu_zero_point_0
-#     add_relu = torch.ops.quantized.add_relu(layer1_0_conv2, maxpool, layer1_0_relu_scale_0, layer1_0_relu_zero_point_0);  layer1_0_conv2 = maxpool = layer1_0_relu_scale_0 = layer1_0_relu_zero_point_0 = None
-#     layer1_1_conv1 = getattr(self.layer1, "1").conv1(add_relu)
-#     layer1_1_conv2 = getattr(self.layer1, "1").conv2(layer1_1_conv1);  layer1_1_conv1 = None
-#     layer1_1_relu_scale_0 = self.layer1_1_relu_scale_0
-#     layer1_1_relu_zero_point_0 = self.layer1_1_relu_zero_point_0
-#     add_relu_1 = torch.ops.quantized.add_relu(layer1_1_conv2, add_relu, layer1_1_relu_scale_0, layer1_1_relu_zero_point_0);  layer1_1_conv2 = add_relu = layer1_1_relu_scale_0 = layer1_1_relu_zero_point_0 = None
-#     layer2_0_conv1 = getattr(self.layer2, "0").conv1(add_relu_1)
-#     layer2_0_conv2 = getattr(self.layer2, "0").conv2(layer2_0_conv1);  layer2_0_conv1 = None
-#     layer2_0_downsample_0 = getattr(getattr(self.layer2, "0").downsample, "0")(add_relu_1);  add_relu_1 = None
-#     layer2_0_relu_scale_0 = self.layer2_0_relu_scale_0
-#     layer2_0_relu_zero_point_0 = self.layer2_0_relu_zero_point_0
-#     add_relu_2 = torch.ops.quantized.add_relu(layer2_0_conv2, layer2_0_downsample_0, layer2_0_relu_scale_0, layer2_0_relu_zero_point_0);  layer2_0_conv2 = layer2_0_downsample_0 = layer2_0_relu_scale_0 = layer2_0_relu_zero_point_0 = None
-#     layer2_1_conv1 = getattr(self.layer2, "1").conv1(add_relu_2)
-#     layer2_1_conv2 = getattr(self.layer2, "1").conv2(layer2_1_conv1);  layer2_1_conv1 = None
-#     layer2_1_relu_scale_0 = self.layer2_1_relu_scale_0
-#     layer2_1_relu_zero_point_0 = self.layer2_1_relu_zero_point_0
-#     add_relu_3 = torch.ops.quantized.add_relu(layer2_1_conv2, add_relu_2, layer2_1_relu_scale_0, layer2_1_relu_zero_point_0);  layer2_1_conv2 = add_relu_2 = layer2_1_relu_scale_0 = layer2_1_relu_zero_point_0 = None
-#     layer3_0_conv1 = getattr(self.layer3, "0").conv1(add_relu_3)
-#     layer3_0_conv2 = getattr(self.layer3, "0").conv2(layer3_0_conv1);  layer3_0_conv1 = None
-#     layer3_0_downsample_0 = getattr(getattr(self.layer3, "0").downsample, "0")(add_relu_3);  add_relu_3 = None
-#     layer3_0_relu_scale_0 = self.layer3_0_relu_scale_0
-#     layer3_0_relu_zero_point_0 = self.layer3_0_relu_zero_point_0
-#     add_relu_4 = torch.ops.quantized.add_relu(layer3_0_conv2, layer3_0_downsample_0, layer3_0_relu_scale_0, layer3_0_relu_zero_point_0);  layer3_0_conv2 = layer3_0_downsample_0 = layer3_0_relu_scale_0 = layer3_0_relu_zero_point_0 = None
-#     layer3_1_conv1 = getattr(self.layer3, "1").conv1(add_relu_4)
-#     layer3_1_conv2 = getattr(self.layer3, "1").conv2(layer3_1_conv1);  layer3_1_conv1 = None
-#     layer3_1_relu_scale_0 = self.layer3_1_relu_scale_0
-#     layer3_1_relu_zero_point_0 = self.layer3_1_relu_zero_point_0
-#     add_relu_5 = torch.ops.quantized.add_relu(layer3_1_conv2, add_relu_4, layer3_1_relu_scale_0, layer3_1_relu_zero_point_0);  layer3_1_conv2 = add_relu_4 = layer3_1_relu_scale_0 = layer3_1_relu_zero_point_0 = None
-#     layer4_0_conv1 = getattr(self.layer4, "0").conv1(add_relu_5)
-#     layer4_0_conv2 = getattr(self.layer4, "0").conv2(layer4_0_conv1);  layer4_0_conv1 = None
-#     layer4_0_downsample_0 = getattr(getattr(self.layer4, "0").downsample, "0")(add_relu_5);  add_relu_5 = None
-#     layer4_0_relu_scale_0 = self.layer4_0_relu_scale_0
-#     layer4_0_relu_zero_point_0 = self.layer4_0_relu_zero_point_0
-#     add_relu_6 = torch.ops.quantized.add_relu(layer4_0_conv2, layer4_0_downsample_0, layer4_0_relu_scale_0, layer4_0_relu_zero_point_0);  layer4_0_conv2 = layer4_0_downsample_0 = layer4_0_relu_scale_0 = layer4_0_relu_zero_point_0 = None
-#     layer4_1_conv1 = getattr(self.layer4, "1").conv1(add_relu_6)
-#     layer4_1_conv2 = getattr(self.layer4, "1").conv2(layer4_1_conv1);  layer4_1_conv1 = None
-#     layer4_1_relu_scale_0 = self.layer4_1_relu_scale_0
-#     layer4_1_relu_zero_point_0 = self.layer4_1_relu_zero_point_0
-#     add_relu_7 = torch.ops.quantized.add_relu(layer4_1_conv2, add_relu_6, layer4_1_relu_scale_0, layer4_1_relu_zero_point_0);  layer4_1_conv2 = add_relu_6 = layer4_1_relu_scale_0 = layer4_1_relu_zero_point_0 = None
-#     avgpool = self.avgpool(add_relu_7);  add_relu_7 = None
-#     flatten = torch.flatten(avgpool, 1);  avgpool = None
-#     fc = self.fc(flatten);  flatten = None
-#     dequantize_32 = fc.dequantize();  fc = None
-#     return dequantize_32
+"""
+(base) root@autodl-container-9db611b252-b759e1c0:~/autodl-tmp/workspace/infer_system/pytorch_quantization/fx_graph_mode/ptq_static# python3 resnet.py 
+/root/miniconda3/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/root/miniconda3/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+/root/miniconda3/lib/python3.8/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+..............................[before quantization] Evaluation accuracy on test dataset: 88.53, 97.60
+/root/miniconda3/lib/python3.8/site-packages/torch/ao/quantization/observer.py:214: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  warnings.warn(
+graph():
+    %x : torch.Tensor [#users=1] = placeholder[target=x]
+    %activation_post_process_0 : [#users=1] = call_module[target=activation_post_process_0](args = (%x,), kwargs = {})
+    %conv1 : [#users=1] = call_module[target=conv1](args = (%activation_post_process_0,), kwargs = {})
+    %activation_post_process_1 : [#users=1] = call_module[target=activation_post_process_1](args = (%conv1,), kwargs = {})
+    %maxpool : [#users=1] = call_module[target=maxpool](args = (%activation_post_process_1,), kwargs = {})
+    %activation_post_process_2 : [#users=2] = call_module[target=activation_post_process_2](args = (%maxpool,), kwargs = {})
+    %layer1_0_conv1 : [#users=1] = call_module[target=layer1.0.conv1](args = (%activation_post_process_2,), kwargs = {})
+    %activation_post_process_3 : [#users=1] = call_module[target=activation_post_process_3](args = (%layer1_0_conv1,), kwargs = {})
+    %layer1_0_conv2 : [#users=1] = call_module[target=layer1.0.conv2](args = (%activation_post_process_3,), kwargs = {})
+    %activation_post_process_4 : [#users=1] = call_module[target=activation_post_process_4](args = (%layer1_0_conv2,), kwargs = {})
+    %add : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_4, %activation_post_process_2), kwargs = {})
+    %layer1_0_relu_1 : [#users=1] = call_module[target=layer1.0.relu](args = (%add,), kwargs = {})
+    %activation_post_process_5 : [#users=2] = call_module[target=activation_post_process_5](args = (%layer1_0_relu_1,), kwargs = {})
+    %layer1_1_conv1 : [#users=1] = call_module[target=layer1.1.conv1](args = (%activation_post_process_5,), kwargs = {})
+    %activation_post_process_6 : [#users=1] = call_module[target=activation_post_process_6](args = (%layer1_1_conv1,), kwargs = {})
+    %layer1_1_conv2 : [#users=1] = call_module[target=layer1.1.conv2](args = (%activation_post_process_6,), kwargs = {})
+    %activation_post_process_7 : [#users=1] = call_module[target=activation_post_process_7](args = (%layer1_1_conv2,), kwargs = {})
+    %add_1 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_7, %activation_post_process_5), kwargs = {})
+    %layer1_1_relu_1 : [#users=1] = call_module[target=layer1.1.relu](args = (%add_1,), kwargs = {})
+    %activation_post_process_8 : [#users=2] = call_module[target=activation_post_process_8](args = (%layer1_1_relu_1,), kwargs = {})
+    %layer2_0_conv1 : [#users=1] = call_module[target=layer2.0.conv1](args = (%activation_post_process_8,), kwargs = {})
+    %activation_post_process_9 : [#users=1] = call_module[target=activation_post_process_9](args = (%layer2_0_conv1,), kwargs = {})
+    %layer2_0_conv2 : [#users=1] = call_module[target=layer2.0.conv2](args = (%activation_post_process_9,), kwargs = {})
+    %activation_post_process_10 : [#users=1] = call_module[target=activation_post_process_10](args = (%layer2_0_conv2,), kwargs = {})
+    %layer2_0_downsample_0 : [#users=1] = call_module[target=layer2.0.downsample.0](args = (%activation_post_process_8,), kwargs = {})
+    %activation_post_process_11 : [#users=1] = call_module[target=activation_post_process_11](args = (%layer2_0_downsample_0,), kwargs = {})
+    %add_2 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_10, %activation_post_process_11), kwargs = {})
+    %layer2_0_relu_1 : [#users=1] = call_module[target=layer2.0.relu](args = (%add_2,), kwargs = {})
+    %activation_post_process_12 : [#users=2] = call_module[target=activation_post_process_12](args = (%layer2_0_relu_1,), kwargs = {})
+    %layer2_1_conv1 : [#users=1] = call_module[target=layer2.1.conv1](args = (%activation_post_process_12,), kwargs = {})
+    %activation_post_process_13 : [#users=1] = call_module[target=activation_post_process_13](args = (%layer2_1_conv1,), kwargs = {})
+    %layer2_1_conv2 : [#users=1] = call_module[target=layer2.1.conv2](args = (%activation_post_process_13,), kwargs = {})
+    %activation_post_process_14 : [#users=1] = call_module[target=activation_post_process_14](args = (%layer2_1_conv2,), kwargs = {})
+    %add_3 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_14, %activation_post_process_12), kwargs = {})
+    %layer2_1_relu_1 : [#users=1] = call_module[target=layer2.1.relu](args = (%add_3,), kwargs = {})
+    %activation_post_process_15 : [#users=2] = call_module[target=activation_post_process_15](args = (%layer2_1_relu_1,), kwargs = {})
+    %layer3_0_conv1 : [#users=1] = call_module[target=layer3.0.conv1](args = (%activation_post_process_15,), kwargs = {})
+    %activation_post_process_16 : [#users=1] = call_module[target=activation_post_process_16](args = (%layer3_0_conv1,), kwargs = {})
+    %layer3_0_conv2 : [#users=1] = call_module[target=layer3.0.conv2](args = (%activation_post_process_16,), kwargs = {})
+    %activation_post_process_17 : [#users=1] = call_module[target=activation_post_process_17](args = (%layer3_0_conv2,), kwargs = {})
+    %layer3_0_downsample_0 : [#users=1] = call_module[target=layer3.0.downsample.0](args = (%activation_post_process_15,), kwargs = {})
+    %activation_post_process_18 : [#users=1] = call_module[target=activation_post_process_18](args = (%layer3_0_downsample_0,), kwargs = {})
+    %add_4 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_17, %activation_post_process_18), kwargs = {})
+    %layer3_0_relu_1 : [#users=1] = call_module[target=layer3.0.relu](args = (%add_4,), kwargs = {})
+    %activation_post_process_19 : [#users=2] = call_module[target=activation_post_process_19](args = (%layer3_0_relu_1,), kwargs = {})
+    %layer3_1_conv1 : [#users=1] = call_module[target=layer3.1.conv1](args = (%activation_post_process_19,), kwargs = {})
+    %activation_post_process_20 : [#users=1] = call_module[target=activation_post_process_20](args = (%layer3_1_conv1,), kwargs = {})
+    %layer3_1_conv2 : [#users=1] = call_module[target=layer3.1.conv2](args = (%activation_post_process_20,), kwargs = {})
+    %activation_post_process_21 : [#users=1] = call_module[target=activation_post_process_21](args = (%layer3_1_conv2,), kwargs = {})
+    %add_5 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_21, %activation_post_process_19), kwargs = {})
+    %layer3_1_relu_1 : [#users=1] = call_module[target=layer3.1.relu](args = (%add_5,), kwargs = {})
+    %activation_post_process_22 : [#users=2] = call_module[target=activation_post_process_22](args = (%layer3_1_relu_1,), kwargs = {})
+    %layer4_0_conv1 : [#users=1] = call_module[target=layer4.0.conv1](args = (%activation_post_process_22,), kwargs = {})
+    %activation_post_process_23 : [#users=1] = call_module[target=activation_post_process_23](args = (%layer4_0_conv1,), kwargs = {})
+    %layer4_0_conv2 : [#users=1] = call_module[target=layer4.0.conv2](args = (%activation_post_process_23,), kwargs = {})
+    %activation_post_process_24 : [#users=1] = call_module[target=activation_post_process_24](args = (%layer4_0_conv2,), kwargs = {})
+    %layer4_0_downsample_0 : [#users=1] = call_module[target=layer4.0.downsample.0](args = (%activation_post_process_22,), kwargs = {})
+    %activation_post_process_25 : [#users=1] = call_module[target=activation_post_process_25](args = (%layer4_0_downsample_0,), kwargs = {})
+    %add_6 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_24, %activation_post_process_25), kwargs = {})
+    %layer4_0_relu_1 : [#users=1] = call_module[target=layer4.0.relu](args = (%add_6,), kwargs = {})
+    %activation_post_process_26 : [#users=2] = call_module[target=activation_post_process_26](args = (%layer4_0_relu_1,), kwargs = {})
+    %layer4_1_conv1 : [#users=1] = call_module[target=layer4.1.conv1](args = (%activation_post_process_26,), kwargs = {})
+    %activation_post_process_27 : [#users=1] = call_module[target=activation_post_process_27](args = (%layer4_1_conv1,), kwargs = {})
+    %layer4_1_conv2 : [#users=1] = call_module[target=layer4.1.conv2](args = (%activation_post_process_27,), kwargs = {})
+    %activation_post_process_28 : [#users=1] = call_module[target=activation_post_process_28](args = (%layer4_1_conv2,), kwargs = {})
+    %add_7 : [#users=1] = call_function[target=operator.add](args = (%activation_post_process_28, %activation_post_process_26), kwargs = {})
+    %layer4_1_relu_1 : [#users=1] = call_module[target=layer4.1.relu](args = (%add_7,), kwargs = {})
+    %activation_post_process_29 : [#users=1] = call_module[target=activation_post_process_29](args = (%layer4_1_relu_1,), kwargs = {})
+    %avgpool : [#users=1] = call_module[target=avgpool](args = (%activation_post_process_29,), kwargs = {})
+    %activation_post_process_30 : [#users=1] = call_module[target=activation_post_process_30](args = (%avgpool,), kwargs = {})
+    %flatten : [#users=1] = call_function[target=torch.flatten](args = (%activation_post_process_30, 1), kwargs = {})
+    %activation_post_process_31 : [#users=1] = call_module[target=activation_post_process_31](args = (%flatten,), kwargs = {})
+    %fc : [#users=1] = call_module[target=fc](args = (%activation_post_process_31,), kwargs = {})
+    %activation_post_process_32 : [#users=1] = call_module[target=activation_post_process_32](args = (%fc,), kwargs = {})
+    return activation_post_process_32
     
-# # To see more debug info, please use `graph_module.print_readable()`
-# Size of model before quantization
-# Size (MB): 46.877553
-# Size of model after quantization
-# /root/miniconda3/lib/python3.8/site-packages/torch/jit/_check.py:172: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
-#   warnings.warn("The TorchScript type system doesn't support "
-# Size (MB): 11.844807
-# ..............................[before serilaization] Evaluation accuracy on test dataset: 88.73, 97.67
-# ..............................[after serialization/deserialization] Evaluation accuracy on test dataset: 88.73, 97.67
-# tensor(0.0007, grad_fn=<MaxBackward1>)
-# ============ Comparison with Baseline Float Model and Eager Mode Quantization =================
-# Size of baseline model
-# Size (MB): 46.877553
-# ..............................Baseline Float Model Evaluation accuracy: 88.53, 97.60
-# Size of Fx graph mode quantized model
-# Size (MB): 11.844807
-# ..............................FX graph mode quantized model Evaluation accuracy on test dataset: 88.73, 97.67
-# /root/miniconda3/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_QuantizedWeights.IMAGENET1K_FBGEMM_V1`. You can also use `weights=ResNet18_QuantizedWeights.DEFAULT` to get the most up-to-date weights.
-#   warnings.warn(msg)
-# Downloading: "https://download.pytorch.org/models/quantized/resnet18_fbgemm_16fa66dd.pth" to /root/.cache/torch/hub/checkpoints/resnet18_fbgemm_16fa66dd.pth
-# 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 11.2M/11.2M [00:02<00:00, 4.56MB/s]
-# /root/miniconda3/lib/python3.8/site-packages/torch/_utils.py:320: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-#   scales = torch.tensor(scales, dtype=torch.double, device=storage.device)
-# /root/miniconda3/lib/python3.8/site-packages/torch/_utils.py:322: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-#   zero_points, dtype=torch.long, device=storage.device
-# /root/miniconda3/lib/python3.8/site-packages/torch/_utils.py:335: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
-#   device=storage.device,
-# Size of eager mode quantized model
-# Size (MB): 11.840057
-# ..............................eager mode quantized model Evaluation accuracy on test dataset: 88.53, 97.67
+GraphModule(
+  (conv1): QuantizedConvReLU2d(3, 64, kernel_size=(7, 7), stride=(2, 2), scale=0.02770872600376606, zero_point=0, padding=(3, 3))
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Module(
+    (0): Module(
+      (conv1): QuantizedConvReLU2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.013096675276756287, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.04380526766180992, zero_point=73, padding=(1, 1))
+    )
+    (1): Module(
+      (conv1): QuantizedConvReLU2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.01650076173245907, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), scale=0.05765068531036377, zero_point=78, padding=(1, 1))
+    )
+  )
+  (layer2): Module(
+    (0): Module(
+      (conv1): QuantizedConvReLU2d(64, 128, kernel_size=(3, 3), stride=(2, 2), scale=0.014281945303082466, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.03979799151420593, zero_point=59, padding=(1, 1))
+      (downsample): Module(
+        (0): QuantizedConv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), scale=0.03292635455727577, zero_point=67)
+      )
+    )
+    (1): Module(
+      (conv1): QuantizedConvReLU2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.01630367338657379, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), scale=0.04399171099066734, zero_point=67, padding=(1, 1))
+    )
+  )
+  (layer3): Module(
+    (0): Module(
+      (conv1): QuantizedConvReLU2d(128, 256, kernel_size=(3, 3), stride=(2, 2), scale=0.022209102287888527, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.04951776564121246, zero_point=47, padding=(1, 1))
+      (downsample): Module(
+        (0): QuantizedConv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), scale=0.01479915902018547, zero_point=86)
+      )
+    )
+    (1): Module(
+      (conv1): QuantizedConvReLU2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.015260775573551655, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), scale=0.050822507590055466, zero_point=72, padding=(1, 1))
+    )
+  )
+  (layer4): Module(
+    (0): Module(
+      (conv1): QuantizedConvReLU2d(256, 512, kernel_size=(3, 3), stride=(2, 2), scale=0.013010699301958084, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.04366626217961311, zero_point=68, padding=(1, 1))
+      (downsample): Module(
+        (0): QuantizedConv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), scale=0.037426918745040894, zero_point=65)
+      )
+    )
+    (1): Module(
+      (conv1): QuantizedConvReLU2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.014271634630858898, zero_point=0, padding=(1, 1))
+      (conv2): QuantizedConv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), scale=0.24437215924263, zero_point=44, padding=(1, 1))
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): QuantizedLinear(in_features=512, out_features=1000, scale=0.32927021384239197, zero_point=33, qscheme=torch.per_channel_affine)
+)
+
+def forward(self, x : torch.Tensor) -> torch.Tensor:
+    conv1_input_scale_0 = self.conv1_input_scale_0
+    conv1_input_zero_point_0 = self.conv1_input_zero_point_0
+    quantize_per_tensor = torch.quantize_per_tensor(x, conv1_input_scale_0, conv1_input_zero_point_0, torch.quint8);  x = conv1_input_scale_0 = conv1_input_zero_point_0 = None
+    conv1 = self.conv1(quantize_per_tensor);  quantize_per_tensor = None
+    maxpool = self.maxpool(conv1);  conv1 = None
+    layer1_0_conv1 = getattr(self.layer1, "0").conv1(maxpool)
+    layer1_0_conv2 = getattr(self.layer1, "0").conv2(layer1_0_conv1);  layer1_0_conv1 = None
+    layer1_0_relu_scale_0 = self.layer1_0_relu_scale_0
+    layer1_0_relu_zero_point_0 = self.layer1_0_relu_zero_point_0
+    add_relu = torch.ops.quantized.add_relu(layer1_0_conv2, maxpool, layer1_0_relu_scale_0, layer1_0_relu_zero_point_0);  layer1_0_conv2 = maxpool = layer1_0_relu_scale_0 = layer1_0_relu_zero_point_0 = None
+    layer1_1_conv1 = getattr(self.layer1, "1").conv1(add_relu)
+    layer1_1_conv2 = getattr(self.layer1, "1").conv2(layer1_1_conv1);  layer1_1_conv1 = None
+    layer1_1_relu_scale_0 = self.layer1_1_relu_scale_0
+    layer1_1_relu_zero_point_0 = self.layer1_1_relu_zero_point_0
+    add_relu_1 = torch.ops.quantized.add_relu(layer1_1_conv2, add_relu, layer1_1_relu_scale_0, layer1_1_relu_zero_point_0);  layer1_1_conv2 = add_relu = layer1_1_relu_scale_0 = layer1_1_relu_zero_point_0 = None
+    layer2_0_conv1 = getattr(self.layer2, "0").conv1(add_relu_1)
+    layer2_0_conv2 = getattr(self.layer2, "0").conv2(layer2_0_conv1);  layer2_0_conv1 = None
+    layer2_0_downsample_0 = getattr(getattr(self.layer2, "0").downsample, "0")(add_relu_1);  add_relu_1 = None
+    layer2_0_relu_scale_0 = self.layer2_0_relu_scale_0
+    layer2_0_relu_zero_point_0 = self.layer2_0_relu_zero_point_0
+    add_relu_2 = torch.ops.quantized.add_relu(layer2_0_conv2, layer2_0_downsample_0, layer2_0_relu_scale_0, layer2_0_relu_zero_point_0);  layer2_0_conv2 = layer2_0_downsample_0 = layer2_0_relu_scale_0 = layer2_0_relu_zero_point_0 = None
+    layer2_1_conv1 = getattr(self.layer2, "1").conv1(add_relu_2)
+    layer2_1_conv2 = getattr(self.layer2, "1").conv2(layer2_1_conv1);  layer2_1_conv1 = None
+    layer2_1_relu_scale_0 = self.layer2_1_relu_scale_0
+    layer2_1_relu_zero_point_0 = self.layer2_1_relu_zero_point_0
+    add_relu_3 = torch.ops.quantized.add_relu(layer2_1_conv2, add_relu_2, layer2_1_relu_scale_0, layer2_1_relu_zero_point_0);  layer2_1_conv2 = add_relu_2 = layer2_1_relu_scale_0 = layer2_1_relu_zero_point_0 = None
+    layer3_0_conv1 = getattr(self.layer3, "0").conv1(add_relu_3)
+    layer3_0_conv2 = getattr(self.layer3, "0").conv2(layer3_0_conv1);  layer3_0_conv1 = None
+    layer3_0_downsample_0 = getattr(getattr(self.layer3, "0").downsample, "0")(add_relu_3);  add_relu_3 = None
+    layer3_0_relu_scale_0 = self.layer3_0_relu_scale_0
+    layer3_0_relu_zero_point_0 = self.layer3_0_relu_zero_point_0
+    add_relu_4 = torch.ops.quantized.add_relu(layer3_0_conv2, layer3_0_downsample_0, layer3_0_relu_scale_0, layer3_0_relu_zero_point_0);  layer3_0_conv2 = layer3_0_downsample_0 = layer3_0_relu_scale_0 = layer3_0_relu_zero_point_0 = None
+    layer3_1_conv1 = getattr(self.layer3, "1").conv1(add_relu_4)
+    layer3_1_conv2 = getattr(self.layer3, "1").conv2(layer3_1_conv1);  layer3_1_conv1 = None
+    layer3_1_relu_scale_0 = self.layer3_1_relu_scale_0
+    layer3_1_relu_zero_point_0 = self.layer3_1_relu_zero_point_0
+    add_relu_5 = torch.ops.quantized.add_relu(layer3_1_conv2, add_relu_4, layer3_1_relu_scale_0, layer3_1_relu_zero_point_0);  layer3_1_conv2 = add_relu_4 = layer3_1_relu_scale_0 = layer3_1_relu_zero_point_0 = None
+    layer4_0_conv1 = getattr(self.layer4, "0").conv1(add_relu_5)
+    layer4_0_conv2 = getattr(self.layer4, "0").conv2(layer4_0_conv1);  layer4_0_conv1 = None
+    layer4_0_downsample_0 = getattr(getattr(self.layer4, "0").downsample, "0")(add_relu_5);  add_relu_5 = None
+    layer4_0_relu_scale_0 = self.layer4_0_relu_scale_0
+    layer4_0_relu_zero_point_0 = self.layer4_0_relu_zero_point_0
+    add_relu_6 = torch.ops.quantized.add_relu(layer4_0_conv2, layer4_0_downsample_0, layer4_0_relu_scale_0, layer4_0_relu_zero_point_0);  layer4_0_conv2 = layer4_0_downsample_0 = layer4_0_relu_scale_0 = layer4_0_relu_zero_point_0 = None
+    layer4_1_conv1 = getattr(self.layer4, "1").conv1(add_relu_6)
+    layer4_1_conv2 = getattr(self.layer4, "1").conv2(layer4_1_conv1);  layer4_1_conv1 = None
+    layer4_1_relu_scale_0 = self.layer4_1_relu_scale_0
+    layer4_1_relu_zero_point_0 = self.layer4_1_relu_zero_point_0
+    add_relu_7 = torch.ops.quantized.add_relu(layer4_1_conv2, add_relu_6, layer4_1_relu_scale_0, layer4_1_relu_zero_point_0);  layer4_1_conv2 = add_relu_6 = layer4_1_relu_scale_0 = layer4_1_relu_zero_point_0 = None
+    avgpool = self.avgpool(add_relu_7);  add_relu_7 = None
+    flatten = torch.flatten(avgpool, 1);  avgpool = None
+    fc = self.fc(flatten);  flatten = None
+    dequantize_32 = fc.dequantize();  fc = None
+    return dequantize_32
+    
+# To see more debug info, please use `graph_module.print_readable()`
+Size of model before quantization
+Size (MB): 46.877553
+Size of model after quantization
+/root/miniconda3/lib/python3.8/site-packages/torch/jit/_check.py:172: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn("The TorchScript type system doesn't support "
+Size (MB): 11.844807
+..............................[before serilaization] Evaluation accuracy on test dataset: 88.73, 97.67
+..............................[after serialization/deserialization] Evaluation accuracy on test dataset: 88.73, 97.67
+tensor(0.0007, grad_fn=<MaxBackward1>)
+============ Comparison with Baseline Float Model and Eager Mode Quantization =================
+Size of baseline model
+Size (MB): 46.877553
+..............................Baseline Float Model Evaluation accuracy: 88.53, 97.60
+Size of Fx graph mode quantized model
+Size (MB): 11.844807
+..............................FX graph mode quantized model Evaluation accuracy on test dataset: 88.73, 97.67
+/root/miniconda3/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_QuantizedWeights.IMAGENET1K_FBGEMM_V1`. You can also use `weights=ResNet18_QuantizedWeights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/quantized/resnet18_fbgemm_16fa66dd.pth" to /root/.cache/torch/hub/checkpoints/resnet18_fbgemm_16fa66dd.pth
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 11.2M/11.2M [00:02<00:00, 4.56MB/s]
+/root/miniconda3/lib/python3.8/site-packages/torch/_utils.py:320: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  scales = torch.tensor(scales, dtype=torch.double, device=storage.device)
+/root/miniconda3/lib/python3.8/site-packages/torch/_utils.py:322: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  zero_points, dtype=torch.long, device=storage.device
+/root/miniconda3/lib/python3.8/site-packages/torch/_utils.py:335: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  device=storage.device,
+Size of eager mode quantized model
+Size (MB): 11.840057
+..............................eager mode quantized model Evaluation accuracy on test dataset: 88.53, 97.67
+
+"""
